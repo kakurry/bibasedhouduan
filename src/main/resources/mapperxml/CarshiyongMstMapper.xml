@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.bibasedhouduan.dao.CarshiyongMstMapper" >
+  <resultMap id="BaseResultMap" type="com.example.bibasedhouduan.javabean.CarshiyongMst" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="chepaihao" property="chepaihao" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="DATE" />
+    <result column="endTime" property="endtime" jdbcType="DATE" />
+    <result column="yiruku" property="yiruku" jdbcType="VARCHAR" />
+    <result column="allchewei" property="allchewei" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, chepaihao, name, startTime, endTime, yiruku, allchewei, createTime, updateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMstExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from carshiyong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from carshiyong
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from carshiyong
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMstExample" >
+    delete from carshiyong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMst" >
+    insert into carshiyong (Id, chepaihao, name, 
+      startTime, endTime, yiruku, 
+      allchewei, createTime, updateTime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{chepaihao,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, #{yiruku,jdbcType=VARCHAR}, 
+      #{allchewei,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMst" >
+    insert into carshiyong
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="chepaihao != null" >
+        chepaihao,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="yiruku != null" >
+        yiruku,
+      </if>
+      <if test="allchewei != null" >
+        allchewei,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chepaihao != null" >
+        #{chepaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="yiruku != null" >
+        #{yiruku,jdbcType=VARCHAR},
+      </if>
+      <if test="allchewei != null" >
+        #{allchewei,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMstExample" resultType="java.lang.Integer" >
+    select count(*) from carshiyong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update carshiyong
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chepaihao != null" >
+        chepaihao = #{record.chepaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        startTime = #{record.starttime,jdbcType=DATE},
+      </if>
+      <if test="record.endtime != null" >
+        endTime = #{record.endtime,jdbcType=DATE},
+      </if>
+      <if test="record.yiruku != null" >
+        yiruku = #{record.yiruku,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allchewei != null" >
+        allchewei = #{record.allchewei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update carshiyong
+    set Id = #{record.id,jdbcType=VARCHAR},
+      chepaihao = #{record.chepaihao,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=DATE},
+      endTime = #{record.endtime,jdbcType=DATE},
+      yiruku = #{record.yiruku,jdbcType=VARCHAR},
+      allchewei = #{record.allchewei,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=DATE},
+      updateTime = #{record.updatetime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMst" >
+    update carshiyong
+    <set >
+      <if test="chepaihao != null" >
+        chepaihao = #{chepaihao,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="yiruku != null" >
+        yiruku = #{yiruku,jdbcType=VARCHAR},
+      </if>
+      <if test="allchewei != null" >
+        allchewei = #{allchewei,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.bibasedhouduan.javabean.CarshiyongMst" >
+    update carshiyong
+    set chepaihao = #{chepaihao,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=DATE},
+      endTime = #{endtime,jdbcType=DATE},
+      yiruku = #{yiruku,jdbcType=VARCHAR},
+      allchewei = #{allchewei,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
